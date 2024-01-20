@@ -1093,8 +1093,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06743fde2de5a6247917782fc6703d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHeight: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1024
+  groundDrag: 5
   moveSpeed: 7
   orientation: {fileID: 805239462}
+  jumpForce: 12
+  jumpCooldown: 0.25
+  airMultiplier: 0.4
+  jumpKey: 32
 --- !u!1 &2005141147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1116,7 @@ GameObject:
   - component: {fileID: 2005141150}
   - component: {fileID: 2005141149}
   - component: {fileID: 2005141148}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
