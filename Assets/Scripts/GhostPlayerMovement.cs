@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class GhostPlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [Header("Ground Check")]
@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        Debug.Log("ghost suhh");
+
     }
 
     private void ResetJump()
@@ -72,8 +74,15 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(jumpKey) && readyJump && onGround)
+        if (Input.GetKey(jumpKey))
         {
+            Debug.Log("PRESSING");
+            Debug.Log(onGround);
+        }
+
+        if (Input.GetKey(jumpKey) && readyJump)
+        {        
+            Debug.Log("trying to jump");
             readyJump = false;
             
             Jump();
