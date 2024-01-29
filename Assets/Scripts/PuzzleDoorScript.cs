@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleObjectScript : MonoBehaviour
+public class PuzzleDoorScript : MonoBehaviour
 {
     private PuzzleTrackerScript _puzzleTracker;
-    
     public GameObject textOnHover;
     public GameObject textOnClick;
-    
     void Start()
     {
         _puzzleTracker = GameObject.Find("PuzzleTracker").GetComponent<PuzzleTrackerScript>();
@@ -25,23 +23,21 @@ public class PuzzleObjectScript : MonoBehaviour
     {
         textOnHover.SetActive(false);
     }
-    
+
     void OnMouseDown()
     {
-        if (gameObject.name == "PUZZLE_radiator") 
-            _puzzleTracker.ClickedRadiator();
-        else if (gameObject.name == "PUZZLE_chest_open")
-            _puzzleTracker.ClickedChest();
-        else if (gameObject.name == "PUZZLE_nightstand")
-            _puzzleTracker.ClickedNightstand();
-        
-        if (textOnClick.activeSelf == false)
+        if (_puzzleTracker.PuzzleSolved())
+        {
+            textOnHover.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
         {
             textOnClick.SetActive(true);
             Invoke(nameof(DisappearText), 3f);
-        } 
+        }
     }
-
+    
     private void DisappearText()
     {
         textOnClick.SetActive(false);
