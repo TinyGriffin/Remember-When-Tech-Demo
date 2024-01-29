@@ -18,13 +18,18 @@ public class PlayerMovement : MonoBehaviour
     float verticalInput;
     Vector3 moveDirection;
     Rigidbody rb;
-
+    private Player _player;
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
     bool readyJump = true;
     public KeyCode jumpKey = KeyCode.Space;
+
     
+    private void Awake()
+    {
+        _player = GetComponent<Player>();
+    }
 
 
     // Start is called before the first frame update
@@ -65,7 +70,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (_player.user){
+            MovePlayer();
+        }
+        
     }
 
     private void MyInput()
