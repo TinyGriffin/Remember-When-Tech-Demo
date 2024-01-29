@@ -28,7 +28,7 @@ public class PuzzleDoorScript : MonoBehaviour
     {
         if (_puzzleTracker.PuzzleSolved())
         {
-            textOnHover.SetActive(false);
+            Destroy(textOnHover);
             Destroy(gameObject);
         }
         else
