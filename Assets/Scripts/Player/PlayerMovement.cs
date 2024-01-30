@@ -10,9 +10,9 @@ public class PlayerMovement : MonoBehaviour
     public float playerHeight;
     public LayerMask whatIsGround;
     bool onGround;
-    public float groundDrag = 2f;
+    public float groundDrag;
 
-    public float moveSpeed = 7f;
+    public float moveSpeed;
     public Transform orientation;
     float horizontalInput;
     float verticalInput;
@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     
     private Player _player;
+    public float maxDistance;
     
     public float jumpForce;
     public float jumpCooldown;
@@ -55,18 +56,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        onGround = Physics.Raycast(transform.position, Vector3.down, playerHeight + 0.5f + 0.2f, whatIsGround);
+        onGround = Physics.Raycast(transform.position, Vector3.down, playerHeight + 0.5f + maxDistance, whatIsGround);
         MyInput();
         SpeedControl();
 
-        if (onGround)
-        {
-            rb.drag = groundDrag;
-        }
-        else
-        {
-            rb.drag = 0;
-        }
+        rb.drag = groundDrag;
     }
 
     private void FixedUpdate()
@@ -85,7 +79,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(jumpKey) && readyJump && onGround)
         {
             readyJump = false;
-            
+            Debug.Log(onGround);
+
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
         }

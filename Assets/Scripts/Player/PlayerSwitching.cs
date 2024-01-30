@@ -6,6 +6,7 @@ public class PlayerSwitching : MonoBehaviour
 {
     public KeyCode switchKey = KeyCode.Q;
     private Players _allPlayers;
+    public GameObject SpiritRealm;
 
     private void Awake()
     {
@@ -37,13 +38,15 @@ public class PlayerSwitching : MonoBehaviour
         {
             if (_allPlayers._allPlayers[0] != null)
                 _allPlayers._allPlayers[0].UserBrain();
-                
+            SpiritRealm.SetActive(false);
+
         }
         else if (_allPlayers._allPlayers[1] != _allPlayers._currentPlayer)
         {
             if (_allPlayers._allPlayers[1] != null)
                 _allPlayers._allPlayers[1].UserBrain();
-                
+                SpiritRealm.SetActive(true);
+
         }     
         
     }

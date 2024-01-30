@@ -11,6 +11,7 @@ public class GhostPlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     bool onGround;
     public float groundDrag = 2f;
+    private bool moving = false;
 
     public float moveSpeed = 7f;
     public Transform orientation;
@@ -62,6 +63,11 @@ public class GhostPlayerMovement : MonoBehaviour
         MyInput();
         SpeedControl();
 
+        
+    }
+
+    private void FixedUpdate()
+    {
         if (onGround)
         {
             rb.drag = groundDrag;
@@ -73,11 +79,8 @@ public class GhostPlayerMovement : MonoBehaviour
         {
             rb.drag = 0;
         }
-    }
 
-    private void FixedUpdate()
-    {
-        if (_player.user){
+        if (_player.user && moving){
             MovePlayer();
         }
     }
@@ -87,7 +90,18 @@ public class GhostPlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(jumpKey) && readyJump)
+        if (horizontalInput != 0f || verticalInput != 0f)
+        {
+            
+            moving = true;
+        }
+
+        else
+        {
+            moving = false;
+        }
+
+        if (Input.GetKey(jumpKey) && readyJump && false)  //Removing jump ability for time being
         {   
             Debug.Log("Ini Jump");
             readyJump = false;
@@ -121,5 +135,12 @@ public class GhostPlayerMovement : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
+
+        
+
+        /*if (!moving)
+        {
+            rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+        }*/
     }
 }
