@@ -30,7 +30,7 @@ public class PuzzleObjectScript : MonoBehaviour
     {
         if (gameObject.name == "PUZZLE_radiator") 
             _puzzleTracker.ClickedRadiator();
-        else if (gameObject.name == "PUZZLE_chest_open")
+        else if (gameObject.name == "PUZZLE_chest")
             _puzzleTracker.ClickedChest();
         else if (gameObject.name == "PUZZLE_nightstand")
             _puzzleTracker.ClickedNightstand();
