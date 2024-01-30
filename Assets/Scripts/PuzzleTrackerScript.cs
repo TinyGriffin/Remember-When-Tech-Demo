@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,12 @@ public class PuzzleTrackerScript : MonoBehaviour
     public bool ghostKeyClicked = false;
     public bool ghostMattressClicked = false;
     public bool ghostChestClicked = false;
-    
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     public void ClickedRadiator()
     {
         radiatorClicked = true;
