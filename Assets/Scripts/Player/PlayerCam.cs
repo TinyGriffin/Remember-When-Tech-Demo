@@ -7,9 +7,16 @@ public class PlayerCam : MonoBehaviour
     public float sensX;
     public float sensY;
 
-    public Transform orientation;
     float xRotation;
     float yRotation;
+
+    private Players _allPlayers;
+
+    void Awake()
+    {
+         _allPlayers = GetComponentInParent<Players>();
+    }
+    
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +37,9 @@ public class PlayerCam : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-    }
+       
+        _allPlayers._currentPlayer.orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        
+        }
+        
 }
