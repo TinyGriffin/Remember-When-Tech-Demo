@@ -18,7 +18,9 @@ public class PlayerMovement : MonoBehaviour
     float verticalInput;
     Vector3 moveDirection;
     Rigidbody rb;
+    
     private Player _player;
+    
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
