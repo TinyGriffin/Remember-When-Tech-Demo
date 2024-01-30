@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public Transform orientation;
     
     private Players _allPlayers;
+    
+    public bool _isSpiritPlayer;
 
     private void Awake()
     {
@@ -23,11 +25,14 @@ public class Player : MonoBehaviour
         var lastPlayer = _allPlayers._currentPlayer;
         _allPlayers._currentPlayer = this;
         if (lastPlayer != null)
-            lastPlayer.user = false;
+        {
+            //lastPlayer.user = false;
+            lastPlayer.DummyBrain();
+        }
     }
     public void DummyBrain()
     {
-        // This will be when we start having the playwer do other things
+        // This will be when we start having the player do other things
         // when not in use. Like idles
         user = false;
     }

@@ -15,7 +15,9 @@ public class Footsteps : MonoBehaviour
     {
         if (Input.GetKey((KeyCode.W)) || Input.GetKey((KeyCode.A)) || Input.GetKey((KeyCode.S)) || Input.GetKey((KeyCode.D)))
         {
-            footstepsSound.enabled = true;
+            Player _player = GetComponent<Player>();
+            if (_player.user && !_player._isSpiritPlayer)
+                footstepsSound.enabled = true;
         }
         else
         {

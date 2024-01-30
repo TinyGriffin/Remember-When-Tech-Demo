@@ -16,13 +16,14 @@ public class PlayerSwitching : MonoBehaviour
     private void Start()
     {
         SelectPlayerOnStart();
+        SpiritRealm.SetActive(false); // assuming we start on the phys. player
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(switchKey))
         {
-            Debug.Log("Clicked");
+            Debug.Log("Player switched!");
             SwitchPlayer();
         }
     }
@@ -37,15 +38,19 @@ public class PlayerSwitching : MonoBehaviour
         if (_allPlayers._allPlayers[0] != _allPlayers._currentPlayer)
         {
             if (_allPlayers._allPlayers[0] != null)
+            {
                 _allPlayers._allPlayers[0].UserBrain();
-            SpiritRealm.SetActive(false);
+                SpiritRealm.SetActive(false);
+            }
 
         }
         else if (_allPlayers._allPlayers[1] != _allPlayers._currentPlayer)
         {
             if (_allPlayers._allPlayers[1] != null)
+            {
                 _allPlayers._allPlayers[1].UserBrain();
                 SpiritRealm.SetActive(true);
+            }
 
         }     
         
@@ -53,6 +58,8 @@ public class PlayerSwitching : MonoBehaviour
 
     private void SelectPlayerOnStart(){
         if (_allPlayers._allPlayers[0] != null)
+        {
             _allPlayers._allPlayers[0].UserBrain();
+        }
     }
 }

@@ -7,6 +7,9 @@ public class PuzzleTrackerScript : MonoBehaviour
     public bool radiatorClicked = false;
     public bool chestClicked = false;
     public bool nightstandClicked = false;
+    public bool ghostKeyClicked = false;
+    public bool ghostMattressClicked = false;
+    public bool ghostChestClicked = false;
     
     public void ClickedRadiator()
     {
@@ -22,9 +25,24 @@ public class PuzzleTrackerScript : MonoBehaviour
     {
         nightstandClicked = true;
     }
+    
+    public void ClickedGhostKey()
+    {
+        ghostKeyClicked = true;
+    }
+    
+    public void ClickedGhostMattress()
+    {
+        ghostMattressClicked = true;
+    }
+    
+    public void ClickedGhostChest()
+    {
+        ghostChestClicked = true;
+    }
 
     public bool PuzzleSolved()
     {
-        return radiatorClicked && chestClicked && nightstandClicked;
+        return ghostMattressClicked && ghostKeyClicked && ghostChestClicked && radiatorClicked && chestClicked && nightstandClicked;
     }
 }
