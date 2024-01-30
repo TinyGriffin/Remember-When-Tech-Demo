@@ -18,6 +18,8 @@ public class GhostPlayerMovement : MonoBehaviour
     float verticalInput;
     Vector3 moveDirection;
     Rigidbody rb;
+    
+    private Player _player;
 
     public float jumpForce;
     public float hoverSpeed;
@@ -27,6 +29,10 @@ public class GhostPlayerMovement : MonoBehaviour
     bool readyJump = true;
     public KeyCode jumpKey = KeyCode.Space;
     
+    private void Awake()
+    {
+        _player = GetComponent<Player>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -71,7 +77,9 @@ public class GhostPlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (_player.user){
+            MovePlayer();
+        }
     }
 
     private void MyInput()

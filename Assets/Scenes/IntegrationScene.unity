@@ -174,7 +174,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -1352,7 +1352,7 @@ GameObject:
   - component: {fileID: 572737798}
   - component: {fileID: 572737801}
   - component: {fileID: 572737797}
-  - component: {fileID: 572737800}
+  - component: {fileID: 572737802}
   - component: {fileID: 572737799}
   m_Layer: 0
   m_Name: SpiritPlayer
@@ -1490,29 +1490,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &572737800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572737796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06743fde2de5a6247917782fc6703d0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHeight: 2
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
-  groundDrag: 2
-  moveSpeed: 7
-  orientation: {fileID: 467247166}
-  jumpForce: 12
-  jumpCooldown: 0.25
-  airMultiplier: 0.2
-  jumpKey: 32
 --- !u!54 &572737801
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1535,11 +1512,36 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &572737802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572737796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d2768d551dad4ada9df5dc10b079f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHeight: 1.5
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1024
+  groundDrag: 3
+  moveSpeed: 5.5
+  orientation: {fileID: 467247166}
+  jumpForce: 6
+  hoverSpeed: 0.7
+  hoverPercent: 0.4
+  jumpCooldown: 0.25
+  airMultiplier: 2
+  jumpKey: 32
 --- !u!1 &635257645 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3010306010803744328, guid: bd374431396b43b4d89f89d539718510, type: 3}
