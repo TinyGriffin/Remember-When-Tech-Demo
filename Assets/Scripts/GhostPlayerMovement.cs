@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class GhostPlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [Header("Ground Check")]
@@ -20,12 +20,13 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     public float jumpForce;
+    public float hoverSpeed;
+    public float hoverPercent;
     public float jumpCooldown;
     public float airMultiplier;
     bool readyJump = true;
     public KeyCode jumpKey = KeyCode.Space;
     
-
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +37,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        // rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        // rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        Vector3 pos = transform.position;
+        float newY = (hoverPercent * Mathf.Sin(Time.time * hoverSpeed)) + playerHeight;
+        transform.position = new Vector3(pos.x, newY, pos.z);
     }
 
     private void ResetJump()
@@ -55,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
         if (onGround)
         {
             rb.drag = groundDrag;
+            Vector3 pos = transform.position;
+            float newY = (hoverPercent * Mathf.Sin(Time.time * hoverSpeed)) + playerHeight;
+            transform.position = new Vector3(pos.x, newY, pos.z);
         }
         else
         {
@@ -72,8 +79,9 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(jumpKey) && readyJump && onGround)
-        {
+        if (Input.GetKey(jumpKey) && readyJump)
+        {   
+            Debug.Log("Ini Jump");
             readyJump = false;
             
             Jump();
@@ -94,8 +102,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
-            
-    
     }
 
     private void SpeedControl()
